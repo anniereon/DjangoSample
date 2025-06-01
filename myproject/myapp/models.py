@@ -1,7 +1,8 @@
 from django.db import models
 
-class Name(models.Model):
-    text = models.CharField(max_length=100)
+class User(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    user_name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.text
+        return self.user_name

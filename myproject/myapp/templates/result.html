@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>結果</title>
+    <title>ユーザー一覧</title>
 </head>
 <body>
-    <h1>こんにちは、{{ name }}さん！</h1>
+    <h1>登録されたユーザー一覧</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.user_name }}</li>
+        {% endfor %}
+    </ul>
     <a href="/">戻る</a>
 </body>
 </html>
