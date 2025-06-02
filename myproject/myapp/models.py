@@ -44,7 +44,7 @@ class Race(models.Model):
 class RaceDetail(models.Model):
     race = models.ForeignKey('Race', on_delete=models.CASCADE, db_column='race_id')
     horse_id = models.CharField(max_length=50, null=True, blank=True)
-    rank = models.IntegerField(null=True, blank=True)
+    rank = models.CharField(max_length=50, null=True, blank=True)
     frame_number = models.IntegerField(null=True, blank=True)
     horse_number = models.IntegerField(null=True, blank=True)
     sex_age = models.CharField(max_length=10, null=True, blank=True)
@@ -54,9 +54,9 @@ class RaceDetail(models.Model):
     time_index = models.IntegerField(null=True, blank=True)
     passing_order = models.CharField(max_length=50, null=True, blank=True)
     last_time = models.FloatField(null=True, blank=True)
-    odds = models.FloatField(null=True, blank=True)
+    odds = models.CharField(max_length=20, null=True, blank=True)
     popularity = models.IntegerField(null=True, blank=True)
-    horse_weight = models.IntegerField(null=True, blank=True)
+    horse_weight = models.TextField(null=True, blank=True)
     note = models.TextField(blank=True, null=True)
     trainer_comment = models.TextField(blank=True, null=True)
     avg_recent_rank = models.FloatField(null=True, blank=True)
@@ -69,7 +69,7 @@ class RaceDetail(models.Model):
     num_mid_run = models.IntegerField(null=True, blank=True)
     num_closing_run = models.IntegerField(null=True, blank=True)
     development_prediction = models.TextField(blank=True, null=True)
-    check_target = models.BooleanField(default=False)
+    check_target = models.BooleanField(blank=True, null=True)
     check_result = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
@@ -81,37 +81,12 @@ class RaceDetail(models.Model):
 
 class Jockey(models.Model):
     jockey_id = models.CharField(primary_key=True, max_length=20)
-    year = models.IntegerField(null=True, blank=True)
-    name = models.CharField(max_length=50, null=True, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
-    first_place = models.IntegerField(null=True, blank=True)
-    second_place = models.IntegerField(null=True, blank=True)
-    third_place = models.IntegerField(null=True, blank=True)
-    unplaced = models.IntegerField(null=True, blank=True)
-    graded_race_runs = models.IntegerField(null=True, blank=True)
-    graded_race_wins = models.IntegerField(null=True, blank=True)
-    special_race_runs = models.IntegerField(null=True, blank=True)
-    special_race_wins = models.IntegerField(null=True, blank=True)
-    normal_race_runs = models.IntegerField(null=True, blank=True)
-    normal_race_wins = models.IntegerField(null=True, blank=True)
-    turf_runs = models.IntegerField(null=True, blank=True)
-    turf_wins = models.IntegerField(null=True, blank=True)
-    dirt_runs = models.IntegerField(null=True, blank=True)
-    dirt_wins = models.IntegerField(null=True, blank=True)
-    win_rate = models.FloatField(null=True, blank=True)
-    place_rate_2 = models.FloatField(null=True, blank=True)
-    place_rate_3 = models.FloatField(null=True, blank=True)
-    total_runs = models.IntegerField(null=True, blank=True)
-    total_place_3 = models.IntegerField(null=True, blank=True)
-    cumulative_runs = models.IntegerField(null=True, blank=True)
-    cumulative_place_3 = models.IntegerField(null=True, blank=True)
-    cumulative_place_rate_3 = models.FloatField(null=True, blank=True)
 
     class Meta:
         db_table = 'jockey'
 
     def __str__(self):
-        return f"{self.jockey_id} - {self.name}"
+        return self.jockey_id
 
 class Horse(models.Model):
     horse_id = models.CharField(primary_key=True, max_length=20)
